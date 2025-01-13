@@ -25,7 +25,7 @@
 (defn check-for-command? 
   "Checks if a command exists. If so, it runs the command" 
   [prompt] 
-  (let [resolved (resolve (symbol "navi.plugins.commands.features" prompt))]
+  (let [resolved (resolve (symbol "plugins.sandbox.features" prompt))]
     (if resolved
      (do 
        (println "Command" prompt "executed")
