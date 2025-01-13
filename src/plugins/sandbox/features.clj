@@ -15,7 +15,7 @@
     (println)))
 
 (defn help []
-  (doseq [item (keys (ns-publics 'navi.plugins.commands.features))]
+  (doseq [item (keys (ns-publics 'plugins.sandbox.features))]
      (println item)))
 
 (defn exit []
@@ -33,3 +33,15 @@
        (resolved)
        true)
       nil)))
+
+(defn check-for-commands?
+  [prompt namespaces]
+  (some
+   (fn [ns]
+     (let [resolved (resolve (symbol ns prompt))]
+       (when resolved
+         (println "Command" prompt "executed in" ns)
+         (println util/line)
+         (resolved)
+         true)))
+   namespaces))
