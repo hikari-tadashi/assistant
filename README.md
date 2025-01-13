@@ -7,3 +7,9 @@ The sechmatics for the base server is coming, and ultimate goal is to self-host 
 Second is Navi, the functioning Clojure command line assistant. This is the base project we are growing out of, and it should remain functional through the transition process
 
 The third is a figwheel based project, to be disected for helping with moving the second project into the first project
+
+## To run Navi
+Prereq: Have Clojure and Leiningen installed
+
+- Navigate to reference/Navi/
+- run "lein run"
