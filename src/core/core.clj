@@ -4,7 +4,9 @@
             [plugins.sandbox.chat-memory :as chat]
             ; This is keeping it too tied to clojure, maybe a plugin
             [clojure.tools.cli :refer [cli]] ; to read command line input
-            [plugins.sandbox.features :as features]))
+            [plugins.sandbox.features :as features]
+            ; I have to load the namespace in to memory for it to be visible
+            [plugins.sandbox.memory-manipulation :as mem-manip]))
 
 ;------------------------- CORE LOOP ----------------------------------------------
 
@@ -18,7 +20,7 @@
     (flush)
     (let [input (read-line)
         ; This should be '(run-pre-pipeline) 
-          result (features/check-for-command? input)]
+          result (features/check-for-commands? input ["plugins.sandbox.features" "plugins.sandbox.memory-manipulation"])]
       (if (nil? result)
           ; printing the util/line could be in the pre-pipeline
         (do (println util/line)
