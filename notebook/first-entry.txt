@@ -1,0 +1,11 @@
+This is the server, the other screens are the thin client (Meta Quest 3 setup, 12Jan2024)
+
+- Currently, we are working on Finances
+-- I want to be able to work them on the go. Any windows computer can handle it
+--- Can I set up a desktop for financials, that makes it easier? 
+    No, it does not look like windows is set up for that. I can make a dummy home page though...
+
+    Now, using code server, I can guarantee access to my assistant through the command line
+
+    Well, I found my old clojure code, and what do you know, it just works. I feel blessed that I made that choice, and that it held up. I guess I am continuing from here. I need to add this to a git repo.
+
