@@ -2,6 +2,7 @@
   (:require [navi.plugins.cli.util :as util]
             [navi.base.chatbot.personalities.core :as personality]
             [navi.base.chatbot.core :as jan]
+            ;[navi.plugins.lmstudio.lmstudio]
             [clojure.tools.cli :refer [cli]]
             [navi.plugins.commands.features :as features]))
 

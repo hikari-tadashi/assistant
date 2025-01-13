@@ -1,12 +1,12 @@
 ; /v1/chat/completions
 (ns navi.plugins.lmstudio.lmstudio
-  (:import [netnavi.assist Assistant])
-  (:require [navi.plugins.chatbot.assist :as assistant]
-            [netnavi.plugins.chatgpt.personalities.core :as personality]))
+  ;(:import [netnavi.assist Assistant])
+  (:import [navi.base.chatbot.assist Assistant])
+  (:require [navi.base.chatbot.assist :as assistant]
+            [navi.base.chatbot.personalities.core :as personality]))
 
 (require
- '[wkok.openai-clojure.api :as api]
- '[navi.plugins.chatbot.assist :as assistant]) 
+ '[wkok.openai-clojure.api :as api]) 
 
 
 ; These two may not fit here, but was circular dependant in gpt.clj
