@@ -26,5 +26,3 @@ Notes
 
 Core - starting point for w/e feature
 lmstudio - manual messaging will be replaced by thread for jan
-
-chat-with-assistant is where the function comes from
