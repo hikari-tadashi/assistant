@@ -1,4 +1,4 @@
-(ns plugins.sandbox.external 
+(ns plugins.sandbox.memory_storage
   (:import [netnavi.assist Assistant])
   (:require [navi.plugins.chatbot.assist :as assistant]
             [netnavi.plugins.chatgpt.gpt :as gpt]))

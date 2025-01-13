@@ -1,5 +1,5 @@
-(ns navi.chat-memory
-  (:require [navi.base.chatbot.personalities.core :as personality]
+(ns plugins.sandbox.chat-memory
+  (:require [plugins.sandbox.personality :as personality]
             ; Needed to make our own api call out
             [clojure.data.json :as json]
             [clj-http.client :as client]))
