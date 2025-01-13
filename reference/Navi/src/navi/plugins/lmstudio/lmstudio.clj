@@ -1,5 +1,5 @@
 ; /v1/chat/completions
-(ns netnavi.plgins.lmstudio
+(ns navi.plugins.lmstudio.lmstudio
   (:import [netnavi.assist Assistant])
   (:require [navi.plugins.chatbot.assist :as assistant]
             [netnavi.plugins.chatgpt.personalities.core :as personality]))
