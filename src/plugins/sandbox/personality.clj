@@ -1,4 +1,4 @@
-(ns navi.base.chatbot.personalities.core)
+(ns plugins.sandbox.personality)
 
 (def navi-name 
   "Nav")

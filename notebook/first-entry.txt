@@ -8,4 +8,3 @@ This is the server, the other screens are the thin client (Meta Quest 3 setup, 1
     Now, using code server, I can guarantee access to my assistant through the command line
 
     Well, I found my old clojure code, and what do you know, it just works. I feel blessed that I made that choice, and that it held up. I guess I am continuing from here. I need to add this to a git repo.
-
