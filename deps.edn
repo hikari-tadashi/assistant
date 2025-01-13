@@ -1,1 +1,4 @@
-{:deps {org.clojure/clojurescript {:mvn/version "1.11.54"}}}
+; These are the basic dependencies. Only clojurescript was needed for clojurescript
+{:deps {org.clojure/clojurescript {:mvn/version "1.11.54"}
+        ; This adds react to the project
+        cljsjs/react-dom {:mvn/version "16.2.0-3"}}}

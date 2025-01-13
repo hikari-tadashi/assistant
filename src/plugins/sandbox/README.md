@@ -1,0 +1,1 @@
+Use this space to create one conceptual idea that can have a well defined API in, out, and serves one central purpose. when its done, shift it to its own plugin directory

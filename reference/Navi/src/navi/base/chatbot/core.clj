@@ -2,11 +2,7 @@
   (:require [clojure.data.json :as json]
             [clj-http.client :as client]))
 
-(defn extract-response [resp]
-  (let [body (get resp :body)
-        json-object (json/read-json body)
-        content (get-in json-object [:choices 0 :message :content])]
-    content))
+
 
 (defn chat [input]
   (client/post "http://192.168.68.70:7000/v1/chat/completions" {:content-type :json

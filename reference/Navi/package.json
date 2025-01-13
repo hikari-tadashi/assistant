@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@langchain/core": "^0.3.29",
+    "@langchain/langgraph": "^0.2.39",
+    "@langchain/openai": "^0.3.17",
+    "source-map-support": "^0.5.21",
+    "uuid": "^11.0.5"
+  }
+}
