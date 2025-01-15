@@ -1,14 +1,19 @@
+; This is the main entry point of the program. the simple TUI 
 (ns core.core
   (:require [plugins.sandbox.util :as util]
-            [plugins.sandbox.personality :as personality]
-            [plugins.sandbox.chat-memory :as chat]
+            [plugins.personality.personality :as personality]
+            [plugins.memory.chat-memory :as chat]
             ; This is keeping it too tied to clojure, maybe a plugin
             [clojure.tools.cli :refer [cli]] ; to read command line input
-            [plugins.sandbox.features :as features]
+            [core.features :as features]
             ; I have to load the namespace in to memory for it to be visible
-            [plugins.sandbox.memory-manipulation :as mem-manip]))
+            [plugins.memory.memory-manipulation :as mem-manip]))
 
 ;------------------------- CORE LOOP ----------------------------------------------
+(def commands ["core.features"
+               "plugins.memory.memory-manipulation"
+               "plugins.personality.switch"
+               "plugins.sandbox.clipboard"])
 
 (defn pipeline-configurable-loop
   "This is the main loop, leveraging pipeline confgurability"
@@ -20,7 +25,7 @@
     (flush)
     (let [input (read-line)
         ; This should be '(run-pre-pipeline) 
-          result (features/check-for-commands? input ["plugins.sandbox.features" "plugins.sandbox.memory-manipulation"])]
+          result (features/check-for-commands? input commands)]
       (if (nil? result)
           ; printing the util/line could be in the pre-pipeline
         (do (println util/line)
