@@ -1,0 +1,6 @@
+I can see how often I am going to want to 'talk' to the AI. it is going to be inefficient, but I can use smaller models for that
+
+Next steps: 
+- model swapping
+- tool usage
+- memory of last N conversations in quick-swap

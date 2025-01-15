@@ -13,3 +13,7 @@ Prereq: Have Clojure and Leiningen installed
 
 - Navigate to reference/Navi/
 - run "lein run"
+
+## Layout
+Core - The essential bits and peices
+Plugins - additional functionality that can be added to the core

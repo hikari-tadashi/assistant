@@ -1,7 +1,0 @@
-* Add external command/transcript
-* Add a 'echo-trancript' to grab the whole conversation
-* Add personality switch
-** Config for default
-** Flag switch
-** Live switch
-* Feed in 'default daily metrics (weather, todo, calendar)'
