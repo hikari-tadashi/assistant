@@ -47,7 +47,7 @@
 
 ; -------------------- FROM CHATBOT CORE -------------------------------------------------
 (defn chat [messages] 
-  (client/post "http://192.168.68.70:7000/v1/chat/completions" {:content-type :json
+  (client/post "http://192.168.68.70:1234/v1/chat/completions" {:content-type :json
                                                                 :form-params {:messages messages
                                                                               :model "llama-3.2-8b-instruct"
                                                                               :stream false
