@@ -3,10 +3,13 @@
   (:require [plugins.personality.personality :as personality]
             ; Needed to make our own api call out
             [clojure.data.json :as json]
-            [clj-http.client :as client]))
+            [clj-http.client :as client]
+            [plugins.sandbox.util :as util]))
 
 (require
  '[wkok.openai-clojure.api :as api])
+
+;this should initialize with the spit/slurp mentioned in personality/switch
 
 ; defrecord only works for clojure
 ; create a record for a conversation
@@ -72,3 +75,18 @@
   (add-new-message (log-prompt-update! prompt))
   ; [:choices 0 :message :content]
   (log-response-update! (extract-response (chat @(:running-log assistant)))))
+
+(defn new-chat
+  "This takes one of the type names, and make a new chat for it"
+  [type]
+  ; taken from plugins.memory.chat-memory
+  [{:role "system" :content type}])
+
+; todo: slurp/spit the personality in memory
+; TODO: move to switch.clj
+(defn personality-init!
+  ; TODO: The ability to reset the chat with X should be broken out in to its own function (see memory_manipulation)
+  "start a new thread with a different personality"
+  [type]
+  (reset! (:running-log assistant) (new-chat type)) 
+  (println (format "%sReinitialized%s" util/RED util/RESET)))
