@@ -1,6 +1,7 @@
-(ns plugins.personality.switch
-  ; This needs access to the assistant atom to swap out the personality. Is this too much, should it start a new convo?
-  (:require [plugins.sandbox.memory-storage]))
+(ns plugins.personality.switch 
+  (:require
+   [plugins.memory.chat-memory :as mem]
+   [plugins.personality.personality :as personality]))
 
 (def personalities ["default" "enlisted" "assistant" "dev" "netnavi-dev" "guru"])
 
@@ -18,6 +19,8 @@
   ; TODO: pull this list from what is available in plugins/personality file
   (let [input (read-line)]
     (cond
-      (= input "netnavi-dev") (println "netnavi-dev")
+      (= input "netnavi-dev") (mem/personality-init! personality/netnavi-dev)
       (= input "guru") (println "guru")
       :else (println "Sticking w/ the generic"))))
+
+;(println personality/netnavi-dev)

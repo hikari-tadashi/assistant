@@ -7,7 +7,8 @@
             [clojure.tools.cli :refer [cli]] ; to read command line input
             [core.features :as features]
             ; I have to load the namespace in to memory for it to be visible
-            [plugins.memory.memory-manipulation :as mem-manip]))
+            [plugins.memory.memory-manipulation :as mem-manip]
+            [plugins.personality.switch :as switch]))
 
 ;------------------------- CORE LOOP ----------------------------------------------
 (def commands ["core.features"

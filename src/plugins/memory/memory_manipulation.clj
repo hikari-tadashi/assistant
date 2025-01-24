@@ -6,6 +6,7 @@
 (defn init!
   "reset the assistant back to default by mutating the record"
   []
+  ; TODO: The ability to reset the chat with X should be broken out
   (reset! (:running-log chat/assistant) chat/empty-chat)
   (features/clear)
   (println (format "%sReinitialized%s" util/RED util/RESET)))
