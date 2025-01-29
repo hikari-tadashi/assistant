@@ -31,6 +31,7 @@
           ; printing the util/line could be in the pre-pipeline
         (do (println util/line)
               ; this is the default pipeline.
+            ; I need append the 'write to output' for this
             (println util/RED (chat/chat-with-assistant input) util/RESET)
               ; This should be (run-post-pipeline)
               ; printing the util/line for the CLI could be in  the post-pipeline

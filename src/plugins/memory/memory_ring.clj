@@ -3,7 +3,6 @@
   (:require [plugins.memory.memory-manipulation :as mm]))
 
 ; concentric rings... maybe the rings and their interactions can be inspected via graph theory
-
 (defrecord Memory-Ring [memory-vectors])
 
 ; I think I'm gonna need crud versions of these

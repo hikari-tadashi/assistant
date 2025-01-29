@@ -1,15 +1,23 @@
 (ns plugins.memory.memory-manipulation
   (:require [plugins.sandbox.util :as util]
             [core.features :as features]
-            [plugins.memory.chat-memory :as chat]))
+            [plugins.memory.chat-memory :as chat]
+            [plugins.memory.memory-storage :as storage]))
 
 (defn init!
   "reset the assistant back to default by mutating the record"
   []
   ; TODO: The ability to reset the chat with X should be broken out
+  ; TODO: This should remove chat/empty-chat and instead be storage/load-memory
   (reset! (:running-log chat/assistant) chat/empty-chat)
   (features/clear)
   (println (format "%sReinitialized%s" util/RED util/RESET)))
+
+; TODO: Validate this is in the right place. I hacked it in when trying to add state 
+(defn init-from-storage!
+  "meant to replace init! by slurping from memory storage"
+  []
+  (reset! (:running-log chat/assistant) storage/load-memory))
 
 (defn init []
   (init!))
@@ -34,7 +42,7 @@
 
 (defn echo-transcript []
   (print "Enter filename: ")
-  (flush) 
+  (flush)
   (let [filename (read-line)]
     (doseq [index (range (count @(:running-log chat/assistant)))]
       (spit filename (nth @(:running-log chat/assistant) index) :append true)

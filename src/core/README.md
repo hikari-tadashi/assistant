@@ -1,0 +1,3 @@
+- Features is used to load the plugins at runtime
+- Core mainains the central loop for the CLI interface
+    - Core can be run as a one-off event

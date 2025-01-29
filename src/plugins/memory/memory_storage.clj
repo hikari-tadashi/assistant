@@ -1,5 +1,4 @@
 (ns plugins.memory.memory-storage
-  (:import [plugins.memory.chat-memory Assistant])
   (:require [plugins.memory.chat-memory :as memory]))
 
 ; I think this is the same as above, I am just calling it a different way
@@ -7,12 +6,16 @@
  '[wkok.openai-clojure.api :as api]) 
 
 ; This should be moved to GPT Module
-(def assistant (Assistant. (atom memory/empty-chat)))
+;(def assistant (Assistant. (atom memory/empty-chat)))
 
+; this is for the active memory. ill need more for memory
 (def memory "memory/autosave.memory")
 
+; TODO: Maybe call this after each time?
+; NOTE: (append-to-memory) can be used to iteratively save memory
 (defn save-memory [] 
-   (doseq [value @(:running-log assistant)]
+  ; Because it's clojure, we can just directly store the clojure datastructure
+   (doseq [value @(:running-log memory/assistant)]
      (spit memory (str value "\n") :append true)))
 
 (defn load-memory []
@@ -26,7 +29,7 @@
        (into [])))
 
 (defn init-external-assist []
-  (reset! (:running-log assistant) (load-memory)))
+  (reset! (:running-log memory/assistant) (load-memory)))
 
 ; This should be at the end of the pipeline?
 ; This is spitting a dict to the end of a file, when it needs to append it to the list
@@ -35,11 +38,13 @@
 
 (defn external-chat-with-assistant []
   (get-in (api/create-chat-completion {:model "llama-3.2-8b-instruct"
-                                       :messages @(:running-log assistant)}) [:choices 0 :message :content]))
+                                       :messages @(:running-log memory/assistant)}) [:choices 0 :message :content]))
 
-; current assistant is external/assistant, not gpt/assistant. Need to make this more clear
+; current assistant is chat_memory/assistant Need to make this more clear
+; is this still needed or in use anymore
+
 (defn append-to-current-assistant-memory [data]
-   (swap! (:running-log assistant) conj (memory/format-prompt data)))
+   (swap! (:running-log memory/assistant) conj (memory/format-prompt data)))
 
 ; ---------- TESTING -------------
 

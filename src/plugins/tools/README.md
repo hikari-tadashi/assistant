@@ -1,0 +1,1 @@
+Under LMStudio tools are added with the JSON when sending the user request. The model itself has a chat template that it gets added to

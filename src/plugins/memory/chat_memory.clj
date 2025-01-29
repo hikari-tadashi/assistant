@@ -4,7 +4,9 @@
             ; Needed to make our own api call out
             [clojure.data.json :as json]
             [clj-http.client :as client]
-            [plugins.sandbox.util :as util]))
+            [plugins.sandbox.util :as util]
+            ; TODO: Remove this, and rearrange tools to call (add-to-openai-json)
+            [plugins.tools.tools :as tools]))
 
 (require
  '[wkok.openai-clojure.api :as api])
@@ -49,22 +51,39 @@
     (conj empty-chat new-map)))
 
 ; -------------------- FROM CHATBOT CORE -------------------------------------------------
-(defn chat [messages] 
-  (client/post "http://192.168.68.70:1234/v1/chat/completions" {:content-type :json
-                                                                :form-params {:messages messages
-                                                                              :model "llama-3.2-8b-instruct"
-                                                                              :stream false
-                                                                              :max_tokens 4096
-                                                                              :frequency_penalty 0
-                                                                              :presence_penalty 0
-                                                                              :temperature 0.7
-                                                                              :top_p 0.95}}))
+(def openai-json {:model "llama-3.2-8b-instruct"
+                  :stream false
+                  :max_tokens 4096
+                  :frequency_penalty 0
+                  :presence_penalty 0
+                  :temperature 0.7
+                  :top_p 0.95})
+
+(defn add-to-openai-json [key value] 
+  (openai-json (assoc openai-json (keyword key)value)))
+
+; TODO: Move to tools.clj with add-to-openai-json
+; add tools to json, but should be called from tools
+(add-to-openai-json "tools" tools/demo-tool)
+
+(defn chat [messages]
+  (do
+    ; TODO: Move this to a variable
+    (client/post "http://192.168.68.70:1234/v1/chat/completions" {:content-type :json
+                                                                  :form-params (assoc openai-json :messages messages)})))
 
 (defn extract-response [resp]
   (let [body (get resp :body)
         json-object (json/read-json body)
         content (get-in json-object [:choices 0 :message :content])]
     content))
+
+(defn extract-tool [resp]
+  (let [body (get resp :body)
+        json-object (json/read-json body)
+        content (get-in json-object [:choices 0 :message :tool_call])]
+    content))
+
 ; -------------------- FROM CHATBOT CORE -------------------------------------------------
 
 ; stateful conversation with model, uses api library
@@ -73,8 +92,13 @@
   [prompt]
   ; Add the user prompt to the running log
   (add-new-message (log-prompt-update! prompt))
-  ; [:choices 0 :message :content]
-  (log-response-update! (extract-response (chat @(:running-log assistant)))))
+    ; [:choices 0 :message :content]
+   (log-response-update! (extract-response (chat @(:running-log assistant)))))
+
+(defn proto-chat-with-assistant [prompt]
+  (add-new-message (log-prompt-update! prompt))
+    ; [:choices 0 :message :content]
+  )
 
 (defn new-chat
   "This takes one of the type names, and make a new chat for it"
