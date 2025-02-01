@@ -1,0 +1,7 @@
+I think I want to use Skittle to make the UI. It looks like I'll have to understand CSS a bit, but I can make a pallete of art that I want to pull fro using re-frame and reagent
+
+Oh! I have a note here:
+Add a command compiler - 
+
+
+--- Init should read from the conf file --

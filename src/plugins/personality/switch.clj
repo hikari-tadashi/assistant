@@ -10,17 +10,29 @@
   []
   (print personalities))
 
+(defn read-and-print-personalities [ns-sym]
+  (doseq [item (keys (ns-publics ns-sym))]
+    (println item))
+  (flush)
+  (let [input (read-line)
+        resolved (resolve (symbol "plugins.personality.personality" input))]
+    (if resolved
+      (do
+        (println "Changing to" input)
+        (mem/personality-init! @(resolve (symbol "plugins.personality.personality" input)))))))
+
 (defn switch-personality
   ; this may require reworking core & assistant record. probably inits transcript
   "This function takes the current assistant and changes its conversational context"
   []
   (print "Which personality would you like: ")
   (flush)
+  (read-and-print-personalities 'plugins.personality.personality))
   ; TODO: pull this list from what is available in plugins/personality file
-  (let [input (read-line)]
-    (cond
-      (= input "netnavi-dev") (mem/personality-init! personality/netnavi-dev)
-      (= input "guru") (println "guru")
-      :else (println "Sticking w/ the generic"))))
+  ;(let [input (read-line)]
+  ;  (cond
+  ;    (= input "netnavi-dev") (mem/personality-init! personality/netnavi-dev)
+  ;    (= input "guru") (println "guru")
+  ;    :else (println "Sticking w/ the generic"))))
 
 ;(println personality/netnavi-dev)

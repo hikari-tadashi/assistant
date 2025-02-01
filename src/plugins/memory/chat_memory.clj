@@ -98,7 +98,11 @@
 (defn proto-chat-with-assistant [prompt]
   (add-new-message (log-prompt-update! prompt))
     ; [:choices 0 :message :content]
-  )
+  (let [response (chat @(:running-log assistant))]
+        ; log the response before wedo anything else
+        (log-response-update! (extract-response response))
+    (if-let [tool-call (extract-tool response)]
+      (println (format "There is a tool response: %s" tool-call)))))
 
 (defn new-chat
   "This takes one of the type names, and make a new chat for it"

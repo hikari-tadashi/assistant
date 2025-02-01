@@ -1,0 +1,8 @@
+(defn add-weather [])
+
+(defn add-time [])
+
+(defn add-from-command [command])
+
+; I might need to swap out model context depending on the question asked
+(defn swap-for-this-prompt)
