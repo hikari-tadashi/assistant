@@ -9,6 +9,9 @@
 ; move model to here
 (def model "llama-3.2-8b-instruct")
 
+(def civ-assistant 
+  (str "You are an advisor to a learder running a country in Sid Meyers Civilizaation VI"))
+
 (def standard
   (str "You are a helpful assistant named " navi-name ". your purpose is to help me manage my schedule, projects, and ADHD"))
 

@@ -4,12 +4,14 @@
             [plugins.memory.chat-memory :as chat]
             [plugins.memory.memory-storage :as storage]))
 
+;TODO: This would have (load-memory)
 (defn init!
   "reset the assistant back to default by mutating the record"
   []
   ; TODO: The ability to reset the chat with X should be broken out
   ; TODO: This should remove chat/empty-chat and instead be storage/load-memory
-  (reset! (:running-log chat/assistant) chat/empty-chat)
+  ;(reset! (:running-log chat/assistant) chat/empty-chat)
+  (storage/init-external-assist "memory/config.memory")
   (features/clear)
   (println (format "%sReinitialized%s" util/RED util/RESET)))
 

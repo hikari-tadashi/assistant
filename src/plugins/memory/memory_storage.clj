@@ -13,13 +13,13 @@
 
 ; TODO: Maybe call this after each time?
 ; NOTE: (append-to-memory) can be used to iteratively save memory
-(defn save-memory [] 
+(defn save-memory [memory-file] 
   ; Because it's clojure, we can just directly store the clojure datastructure
    (doseq [value @(:running-log memory/assistant)]
-     (spit memory (str value "\n") :append true)))
+     (spit memory-file (str value "\n") :append true)))
 
-(defn load-memory []
-  (->> (slurp memory)
+(defn load-memory [memory-file]
+  (->> (slurp memory-file)
        (clojure.string/split-lines)
        ; This is used to convert each line into a Clojure map representing the k-v pairs
        (map #(read-string %))
@@ -28,8 +28,8 @@
        ; load them into their vector
        (into [])))
 
-(defn init-external-assist []
-  (reset! (:running-log memory/assistant) (load-memory)))
+(defn init-external-assist [memory-file]
+  (reset! (:running-log memory/assistant) (load-memory memory-file)))
 
 ; This should be at the end of the pipeline?
 ; This is spitting a dict to the end of a file, when it needs to append it to the list

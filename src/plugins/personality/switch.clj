@@ -1,6 +1,7 @@
 (ns plugins.personality.switch 
   (:require
    [plugins.memory.chat-memory :as mem]
+   [plugins.memory.memory-storage :as storage]
    [plugins.personality.personality :as personality]))
 
 (def personalities ["default" "enlisted" "assistant" "dev" "netnavi-dev" "guru"])
@@ -19,7 +20,9 @@
     (if resolved
       (do
         (println "Changing to" input)
-        (mem/personality-init! @(resolve (symbol "plugins.personality.personality" input)))))))
+        ;TODO (save)
+        (mem/personality-init! @(resolve (symbol "plugins.personality.personality" input)))
+        (storage/save-memory "memory/config.memory")))))
 
 (defn switch-personality
   ; this may require reworking core & assistant record. probably inits transcript
