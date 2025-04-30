@@ -49,10 +49,11 @@
     (conj empty-chat new-map)))
 
 ; -------------------- FROM CHATBOT CORE -------------------------------------------------
-(defn chat [messages] 
-  (client/post "http://192.168.68.70:1234/v1/chat/completions" {:content-type :json
+(defn chat [messages]
+  ; gemma-3-1b-it-qat
+  (client/post "http://127.0.0.1:1234/v1/chat/completions" {:content-type :json
                                                                 :form-params {:messages messages
-                                                                              :model "llama-3.2-8b-instruct"
+                                                                              :model "gemma-3-1b-it-qat"
                                                                               :stream false
                                                                               :max_tokens 4096
                                                                               :frequency_penalty 0
