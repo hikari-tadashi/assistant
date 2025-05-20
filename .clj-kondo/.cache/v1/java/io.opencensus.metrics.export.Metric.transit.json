@@ -1,1 +1,0 @@
-["^ ","~:members",["^ ","create",["~#set",[["^ ","~:flags",["^2",["~:method","~:public","~:static"]]]]],"createWithOneTimeSeries",["^2",[["^ ","^3",["^2",["^4","^5","^6"]]]]],"getMetricDescriptor",["^2",[["^ ","^3",["^2",["^4","^5"]]]]],"getTimeSeriesList",["^2",[["^ ","^3",["^2",["^4","^5"]]]]]]]

@@ -1,1 +1,0 @@
-["^ ","~:members",["^ ","clientSharedSecret",["~#set",[["^ ","~:flags",["^2",["~:public","~:field"]]]]],"tokenSharedSecret",["^2",[["^ ","^3",["^2",["^4","^5"]]]]],"<init>",["^2",[["^ ","^3",["^2",["~:method","^4"]]]]],"getSignatureMethod",["^2",[["^ ","^3",["^2",["^8","^4"]]]]],"computeSignature",["^2",[["^ ","^3",["^2",["^8","^4"]]]]]]]
