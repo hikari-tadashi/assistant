@@ -75,7 +75,17 @@
   ; Add the user prompt to the running log
   (add-new-message (log-prompt-update! prompt))
   ; [:choices 0 :message :content]
-  (log-response-update! (extract-response (chat @(:running-log assistant)))))
+  (let [response (log-response-update! (extract-response (chat @(:running-log assistant))))]
+    ; Sync with thread manager after conversation
+    (try
+      (let [thread-manager-ns (find-ns 'plugins.memory.thread-manager)]
+        (when thread-manager-ns
+          (when-let [sync-fn (ns-resolve thread-manager-ns 'sync-current-thread)]
+            (sync-fn))))
+      (catch Exception _
+        ; Silently ignore if thread manager is not loaded
+        nil))
+    response))
 
 (defn new-chat
   "This takes one of the type names, and make a new chat for it"

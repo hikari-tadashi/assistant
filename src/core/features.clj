@@ -16,10 +16,19 @@
     (println)))
 
 (defn help []
+  (println (format "%s=== Core Features ===%s" util/CYAN util/RESET))
   (doseq [item (keys (ns-publics 'core.features))]
-    (println item))
+    (println (format "  %s" item)))
+  (println (format "%s=== Memory Management ===%s" util/CYAN util/RESET))
   (doseq [item (keys (ns-publics 'plugins.memory.memory-manipulation))]
-    (println item)))
+    (println (format "  %s" item)))
+  (println (format "%s=== Thread Commands ===%s" util/GREEN util/RESET))
+  (println "  threads           - List all conversation threads")
+  (println "  thread-create     - Create a new thread")
+  (println "  thread-switch     - Switch to existing thread")
+  (println "  thread-current    - Show current active thread")
+  (println "  thread-rename     - Rename a thread")
+  (println "  thread-delete     - Delete a thread"))
 
 (defn exit []
   (System/exit 0))

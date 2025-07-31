@@ -1,7 +1,9 @@
 (ns plugins.memory.memory-manipulation
   (:require [plugins.sandbox.util :as util]
             [core.features :as features]
-            [plugins.memory.chat-memory :as chat]))
+            [plugins.memory.chat-memory :as chat]
+            [plugins.memory.thread-manager :as threads]
+            [clojure.string :as str]))
 
 (defn init!
   "reset the assistant back to default by mutating the record"
@@ -77,3 +79,65 @@
 ;(count @(:running-log netnavi.plugins.gpt/assistant))
 ;(strike-last-input!)
 ;(init!)
+
+; ----------------------- THREAD MANAGEMENT COMMANDS -------------------------
+
+(defn threads
+  "List all available conversation threads"
+  []
+  (threads/list-threads))
+
+(defn thread-create
+  "Create a new conversation thread. Usage: thread-create then enter name when prompted"
+  []
+  (print "Enter thread name: ")
+  (flush)
+  (let [thread-name (read-line)]
+    (if (empty? (str/trim thread-name))
+      (println (format "%sThread name cannot be empty%s" util/RED util/RESET))
+      (threads/create-thread (str/trim thread-name)))))
+
+(defn thread-switch
+  "Switch to an existing conversation thread. Usage: thread-switch then enter name when prompted"
+  []
+  (print "Enter thread name to switch to: ")
+  (flush)
+  (let [thread-name (read-line)]
+    (when-not (empty? (str/trim thread-name))
+      (threads/switch-thread (str/trim thread-name)))))
+
+(defn thread-rename
+  "Rename an existing thread. Usage: thread-rename then enter old and new names when prompted"
+  []
+  (print "Enter current thread name: ")
+  (flush)
+  (let [old-name (read-line)]
+    (when-not (empty? (str/trim old-name))
+      (print "Enter new thread name: ")
+      (flush)
+      (let [new-name (read-line)]
+        (when-not (empty? (str/trim new-name))
+          (threads/rename-thread (str/trim old-name) (str/trim new-name)))))))
+
+(defn thread-delete
+  "Delete a conversation thread. Usage: thread-delete then enter name when prompted"
+  []
+  (print "Enter thread name to delete: ")
+  (flush)
+  (let [thread-name (read-line)]
+    (when-not (empty? (str/trim thread-name))
+      (print (format "Are you sure you want to delete thread '%s'? (y/N): " thread-name))
+      (flush)
+      (let [confirmation (read-line)]
+        (when (= "y" (str/lower-case (str/trim confirmation)))
+          (threads/delete-thread (str/trim thread-name)))))))
+
+(defn thread-current
+  "Show the current active thread"
+  []
+  (if-let [current (threads/get-current-thread)]
+    (println (format "%sCurrent thread: %s%s%s" util/CYAN current util/GREEN util/RESET))
+    (println (format "%sNo current thread active%s" util/YELLOW util/RESET))))
+
+; Initialize thread manager on namespace load
+(threads/init-thread-manager)
