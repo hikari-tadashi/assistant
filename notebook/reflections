@@ -1,1 +1,9 @@
 The primary design here is the usage of a http API, and a json object to track the state of the message. should in theory work in any language
+
+I need to be able to build a custom assistant to ask them one or many questions
+
+prompt builder needs a better name
+
+All chats are going to follow the 'stack' structure of people talking (how would 'overlapping talk' be represented? (parallel branches/git?)). this is a safe generic chat metaphore, moving towards branches/web/ (memory philosophy)
+
+I need a central API that my 'platform'/framework offers, that can be considered the 'unchanging anchorpoints'. this is over ollama and mmemory I think, but under core. core is built on these APIs

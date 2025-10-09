@@ -1,5 +1,10 @@
 # Assistant (Navi)
 
+## EASY ENTRY
+
+Go to src/plugins/sandbox/scratch to play around with ask(), ask-agent(), and others
+
+
 A command-line AI assistant built in Clojure, designed to interact with local LLM servers (LM Studio, Jan, Cortex, or llama.cpp). Features a plugin-based architecture with personality switching, chat memory, and extensible command system.
 
 ## Features

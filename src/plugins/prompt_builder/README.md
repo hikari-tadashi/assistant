@@ -5,6 +5,8 @@
 This program generates LLM system prompts by combining data from INI files
 and instructions from agent template files.
 
+## TODO: Allow agents to be built from lists of other agents
+
 ## Project Structure
 
 -   `project.clj`: Leiningen project configuration.

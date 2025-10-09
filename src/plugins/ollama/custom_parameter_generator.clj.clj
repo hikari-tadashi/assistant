@@ -18,10 +18,12 @@
     ; take the existing chat (no longer empty) and add the new text to it
     (conj empty-chat new-map)))
 
+; does just chainging this change the state of the program? 
 (def messages (generate-single-use-prompt "This is a demo prompt"))
 
-;; The actual important part of the file
+;;------ The actual important part of the file
 
+;; JSON of the Ollama request
 (def ollama-request
   {:model model
    :messages messages

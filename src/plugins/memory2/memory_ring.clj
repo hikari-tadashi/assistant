@@ -1,0 +1,1 @@
+(ns plugins.memory2.memory-ring)
