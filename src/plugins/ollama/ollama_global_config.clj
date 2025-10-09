@@ -1,0 +1,1 @@
+(ns plugins.ollama.ollama-global-config)

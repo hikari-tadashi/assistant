@@ -1,0 +1,1 @@
+The primary design here is the usage of a http API, and a json object to track the state of the message. should in theory work in any language
