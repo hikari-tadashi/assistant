@@ -51,15 +51,15 @@
 ; -------------------- FROM CHATBOT CORE -------------------------------------------------
 (defn chat [messages]
   ; gemma-3-1b-it-qat
-  (client/post "http://127.0.0.1:1234/v1/chat/completions" {:content-type :json
-                                                                :form-params {:messages messages
-                                                                              :model "gemma-3-1b-it-qat"
-                                                                              :stream false
-                                                                              :max_tokens 4096
-                                                                              :frequency_penalty 0
-                                                                              :presence_penalty 0
-                                                                              :temperature 0.7
-                                                                              :top_p 0.95}}))
+  (client/post "http://127.0.0.1:11434/v1/chat/completions" {:content-type :json
+                                                             :form-params {:messages messages
+                                                                           :model "gemma3:12b"
+                                                                           :stream false
+                                                                           :max_tokens 8192
+                                                                           :frequency_penalty 0
+                                                                           :presence_penalty 0
+                                                                           :temperature 0.7
+                                                                           :top_p 0.95}}))
 
 (defn extract-response [resp]
   (let [body (get resp :body)
@@ -91,3 +91,5 @@
   [type]
   (reset! (:running-log assistant) (new-chat type)) 
   (println (format "%sReinitialized%s" util/RED util/RESET)))
+
+(chat-with-assistant "Hello")
