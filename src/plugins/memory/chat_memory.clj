@@ -92,4 +92,4 @@
   (reset! (:running-log assistant) (new-chat type)) 
   (println (format "%sReinitialized%s" util/RED util/RESET)))
 
-(chat-with-assistant "Hello")
+;;(chat-with-assistant "Hello")
