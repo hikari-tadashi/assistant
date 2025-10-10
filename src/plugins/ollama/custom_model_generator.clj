@@ -13,6 +13,7 @@
 
 
 ;; - takes in a custom prompt (one block of the stack?)
+;: I think this just simply gets 'absorbed' because of optional named parameters
 (defn generate-conversation-with-custom-model [prompt params])
 
 
