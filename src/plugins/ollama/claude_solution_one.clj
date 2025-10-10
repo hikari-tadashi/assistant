@@ -1,9 +1,11 @@
 (ns your-namespace.llm
   (:require [clojure.walk :as walk]))
 
+;; This default prompt is a string. More accurate to what I asked for
 ;; Default values
 (def default-system-prompt "You are a helpful assistant.")
 
+;; Same between Claude and Qwen2.5
 (def default-params
   {:model "gemma3:1b"
    :stream false
@@ -13,9 +15,11 @@
 (defn system-message [content]
   {:role "system" :content content})
 
+;; Doesn't exist in Qwen
 (defn user-message [content]
   {:role "user" :content content})
 
+;; Doesn't exist in Qwen2.5 AND I think it's not needed
 (defn assistant-message [content]
   {:role "assistant" :content content})
 
@@ -37,6 +41,7 @@
   (let [;; Build the messages chain
         messages (cond
                    ;; If chain is provided, use it and append prompt
+                   ;; seq basically is creating a new sequence with the values of the old sequence (chain)
                    (seq chain)
                    (if system
                      ;; Replace system message (first item) if new system provided
