@@ -1,5 +1,4 @@
 (ns plugins.ollama.custom-model-generator)
-
 ;; should have an entrypoint for prompt-builder
 ;; should have an entrypoint for memory
 ;; - call stack builder for a basic stack
@@ -21,7 +20,7 @@
   "a simple interface (for scratch demo) that lets me ask an agent by inserting
    a question (prompt), personality (prompt_builder), and parameters (params)"
   
-  ;; ask a fully built personality of any flavor
+  ;; ask a fully built personality of any flavore
   ;; Task agent
   ;; Character for play
   ;; Multi-step agents
