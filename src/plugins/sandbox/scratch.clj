@@ -6,5 +6,3 @@
 
 (ollama/ask-custom-json
  (plugins.ollama.custom-llm-req/build-llm-request "Hello, do you understand me?"))
-
-(print "Test")

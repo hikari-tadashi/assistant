@@ -1,0 +1,15 @@
+the [Models] header
+- it looks liek I was creating something with the compile/role. was I attempting to do something more programmatic? 
+- or was I just attempting to recursivly call the prompt builder? is that not programmatic? 
+
+
+Models, looks like I am creating what I would consider an agent. why would I have it in basic.ini? is it
+- was I trying to create a pipeline? 
+
+I am trying to use models 
+
+compile/role, might have just been a placeholder. to hold the role for the role? the things in quotes I think I was passing in from the external. I think the "gemma3-1b" was just an identifier for which model I planned to use. Is there.
+
+I think I was trying to use the [model] section as a quick reference for agents I was going to build out? 
+
+I think what I am missing is that I was going to build out a pipeline next, so that I could reference multiple agents in a row
