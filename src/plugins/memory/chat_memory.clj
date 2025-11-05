@@ -53,7 +53,7 @@
   ; gemma-3-1b-it-qat
   (client/post "http://127.0.0.1:11434/v1/chat/completions" {:content-type :json
                                                              :form-params {:messages messages
-                                                                           :model "gemma3:12b"
+                                                                           :model "gemma3:270m"
                                                                            :stream false
                                                                            :max_tokens 8192
                                                                            :frequency_penalty 0
