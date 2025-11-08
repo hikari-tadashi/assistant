@@ -16,5 +16,9 @@
                  [com.google.api-client/google-api-client "2.5.0"]]
   :main ^:skip-aot core.core
   :target-path "target/%s"
-  :profiles {:uberjar {:aot :all
-                       :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}})
+  :profiles {:uberjar {:aot [core.core]
+                       :main core.core
+                       :jvm-opts ["-Dclojure.compiler.direct-linkaing=true"]}
+             
+             :core2 {:aot [core.core2]
+                     :main core.core2}})

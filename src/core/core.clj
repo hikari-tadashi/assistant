@@ -1,5 +1,6 @@
 ; This is the main entry point of the program. the simple TUI 
 (ns core.core
+  (:gen-class)
   (:require [plugins.sandbox.util :as util]
             [plugins.personality.personality :as personality]
             [plugins.memory.chat-memory :as chat]

@@ -15,7 +15,7 @@
   ; gemma-3-1b-it-qat
   (client/post "http://127.0.0.1:11434/v1/chat/completions" {:content-type :json
                                                              :form-params {:messages (convert-string-to-map prompt)
-                                                                           :model "gemma3:1b"
+                                                                           :model "gemma3:270m"
                                                                            :stream false
                                                                            :max_tokens 8192}}))
 
