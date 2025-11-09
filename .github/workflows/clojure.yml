@@ -1,4 +1,4 @@
-  withname: Clojure CI
+name: Clojure CI
 
 on:
   push:
