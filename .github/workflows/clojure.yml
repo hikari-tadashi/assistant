@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - uses: oxr463/setup-leiningen@0.0.1
     - uses: actions/checkout@v4
     - name: Install dependencies
       run: lein deps
