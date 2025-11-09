@@ -11,33 +11,13 @@ permissions:
   contents: write
 
 jobs:
-  build-and-release:
+  buil-uberjar:
     runs-on: ubuntu-latest
     steps:
-      # 3. Check out the repository code
-      - name: Check out code
-        uses: actions/checkout@v4
-
-      # 4. Set up Java and Leiningen
-      # We use a community action designed for setting up a Clojure environment
-      - name: Set up Clojure
-        uses: DeLaGuardo/setup-clojure@v12
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v5.0.0
+      - uses: DeLaGuardo/setup-clojure@13.4
         with:
-          # Specify the Leiningen version you use
-          lein: '2.11.2' 
-          # You can also specify a Java version, e.g., java: '17'
-
-      # 5. Build the Uberjar
-      # This runs your lein command
-      - name: Build Uberjar
-        run: lein uberjar
-
-      # 6. Create the Release and Upload the JAR
-      # This action automatically finds the tag that triggered the workflow,
-      # creates a new release for it, and uploads the files you specify.
-      - name: Create Release and Upload JAR
-        uses: softprops/action-gh-release@v2
-        with:
-          # The 'files' glob tells the action which artifacts to upload.
-          # 'lein uberjar' puts its output in 'target/uberjar/' by default.
-          files: target/uberjar/*.jar
+          lein: 2.10
+      - name: build uberjar
+        run: lein uberjar 
