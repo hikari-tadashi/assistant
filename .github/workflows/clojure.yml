@@ -21,6 +21,6 @@ jobs:
           java-version: '21'
       - uses: DeLaGuardo/setup-clojure@13.4
         with:
-          lein: 2.10
+          lein: 2.10.0
       - name: build uberjar
         run: lein uberjar 
