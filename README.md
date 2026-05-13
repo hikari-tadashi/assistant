@@ -116,10 +116,6 @@ lein test
 - [ ] Persistent memory storage
 - [ ] Multi-modal support
 
-## License
-
-MIT License - see LICENSE file for details
-
 ## Contributing
 
 Contributions welcome! Please open an issue or submit a pull request.
